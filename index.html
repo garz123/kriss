@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pertanyaan Spesial</title>
+  <style>
+    /* === Background Animasi Bintang === */
+    .stars, .stars2, .stars3 {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: transparent;
+      pointer-events: none;
+      z-index: 0;
+      background-repeat: repeat;
+      animation: moveStars 200s linear infinite;
+    }
+
+    .stars {
+      background-image: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star1.png');
+      animation-duration: 200s;
+    }
+
+    .stars2 {
+      background-image: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star2.png');
+      animation-duration: 300s;
+    }
+
+    .stars3 {
+      background-image: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star3.png');
+      animation-duration: 400s;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
+
+    /* === BODY & ANIMASI === */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('cina.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInBody 1s ease-in-out;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      animation: fadeInContainer 1.5s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeInContainer {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1, p {
+      color: #333;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #ff85c1;
+      transform: scale(1.05);
+    }
+
+    .wa-button {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .wa-button:hover {
+      background-color: #1ebc59;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Latar bintang -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- Isi utama -->
+  <div class="container">
+    <h1 id="question">Aku mau bilang sesuatu...</h1>
+    <button id="iyaBtn" onclick="playMusic()">Iyaa</button>
+    <audio id="bgm" src="lagu.mp3"></audio>
+
+    <p class="next-question" id="nextQ" style="display: none;">
+      aku nggak pandai merangkai kata-kata, tapi aku pengin jujur malam ini.
+      aku sayang sama kamuu. aku ngga tau ke depannya bakal seperti apa,
+      tapi aku ingin mencoba, boleh ngga kita mulai lebih dari sekedar teman..
+    </p>
+    <a id="waBtn" href="#" class="wa-button" style="display: none;" target="_blank">Jawab via WhatsApp</a>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function playMusic() {
+      const music = document.getElementById("bgm");
+      const btn = document.getElementById("iyaBtn");
+      const nextQ = document.getElementById("nextQ");
+      const waBtn = document.getElementById("waBtn");
+
+      music.play();
+      btn.style.display = "none";
+      nextQ.style.display = "block";
+
+      const waNumber = "6283134000383"; // ← Ganti nomor kamu
+      const message = encodeURIComponent("iyaa aku bersediaa..");
+      waBtn.href = `https://wa.me/${waNumber}?text=${message}`;
+      waBtn.style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>
